@@ -30,7 +30,7 @@ def randomize(led):
         output(led, LOW)
 
 if __name__ == "__main__":
-    
+
     setup_gpio()
 
     while True:
@@ -42,4 +42,5 @@ if __name__ == "__main__":
         while time.time() < end_time:
             for led in LEDS:
                 randomize(led)
+            time.sleep(0.2)
 
