@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import time
-from RPi.GPIO import BOARD, OUT, IN, HIGH, LOW, setup, setmode, setwarnings
+from RPi.GPIO import BCM, OUT, IN, HIGH, LOW, setup, setmode, setwarnings
 
-LEFT_TOP = 0
+LEFT_TOP = 17
 LEFT_MID = 0
 LEFT_BOT = 0
 RIGHT_TOP = 0
@@ -11,8 +11,8 @@ RIGHT_MID = 0
 RIGHT_BOT = 0
 
 def setup_gpio():
-	setmode(BOARD)
-	setwarnings(false)
+	setmode(BCM)
+	setwarnings(False)
 
 if __name__ == "__main__":
 	setup_gpio()
