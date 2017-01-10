@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import time
-from RPi.GPIO import BCM, OUT, IN, HIGH, LOW, setup, setmode, setwarnings
+from RPi.GPIO import BCM, OUT, IN, HIGH, LOW
+from RPi.GPIO import setup, setmode, setwarnings, output
 
 LEFT_TOP = 17
 LEFT_MID = 0
@@ -14,11 +15,13 @@ def setup_gpio():
 	setmode(BCM)
 	setwarnings(False)
 
+	setup(LEFT_TOP, OUT)
+
 if __name__ == "__main__":
 	setup_gpio()
 
-	setmode(LEFT_TOP, HIGH)
+	output(LEFT_TOP, HIGH)
 
 	time.sleep(1)
 
-	setmode(LEFT_TOP, LOW)
+	output(LEFT_TOP, LOW)
