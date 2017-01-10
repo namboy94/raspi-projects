@@ -3,6 +3,7 @@
 import time
 from RPi.GPIO import BCM, OUT, IN, HIGH, LOW
 from RPi.GPIO import setup, setmode, setwarnings, output
+from RPi.GPIO import input as _input
 
 LEFT_TOP = 22
 LEFT_MID = 27
@@ -30,7 +31,10 @@ if __name__ == "__main__":
 	for i in [22,27,17,2,3,4]:
 
 		output(i, HIGH)
-
 		time.sleep(1)
-
 		output(i, LOW)
+
+	while True:
+    	if _input(BUTTON) == False:
+        	print('Button Pressed')
+        	time.sleep(0.2)
