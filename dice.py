@@ -18,6 +18,10 @@ def setup_gpio():
 
     setup(BUTTON, IN, pull_up_down=PUD_UP)
 
+def cleanup():
+    for led in LEDS:
+        output(led, LOW)
+
 def wait_for_button_press():
     while _input(BUTTON):
         pass
@@ -31,16 +35,20 @@ def randomize(led):
 
 if __name__ == "__main__":
 
-    setup_gpio()
+    try:
+        setup_gpio()
 
-    while True:
+        while True:
 
-        wait_for_button_press()
+            wait_for_button_press()
 
-        end_time = time.time() + 10
+            end_time = time.time() + 3
 
-        while time.time() < end_time:
-            for led in LEDS:
-                randomize(led)
-            time.sleep(0.2)
+            while time.time() < end_time:
+                for led in LEDS:
+                    randomize(led)
+                time.sleep(0.2)
+    except KeyboardInterrupt:
+
+        cleanup()
 
