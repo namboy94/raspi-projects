@@ -29,114 +29,124 @@ TOP_SUB_BUTTON = 13
 BOT_ADD_BUTTON = 19
 BOT_SUB_BUTTON = 6
 
-class Values(object):
 
-	TOP_VALUE = 0
-	MID_VALUE = 0
+class Adder(object):
 
+	def __init__(self):
 
-def setup_gpio():
-    setmode(BCM)
-    setwarnings(False)
+		self.TOP_VALUE = 0
+		self.MID_VALUE = 0
 
-    for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
-        setup(led, OUT)
+	@staticmethod
+	def setup_gpio():
 
-    setup(TOP_ADD_BUTTON, IN, pull_up_down=PUD_UP)
-    setup(TOP_SUB_BUTTON, IN, pull_up_down=PUD_UP)
-    setup(BOT_ADD_BUTTON, IN, pull_up_down=PUD_UP)
-    setup(BOT_SUB_BUTTON, IN, pull_up_down=PUD_UP)
-    cleanup()
+	    setmode(BCM)
+	    setwarnings(False)
 
+	    for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
+	        setup(led, OUT)
 
-def cleanup():
-    for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
-        output(led, LOW)
+	    setup(TOP_ADD_BUTTON, IN, pull_up_down=PUD_UP)
+	    setup(TOP_SUB_BUTTON, IN, pull_up_down=PUD_UP)
+	    setup(BOT_ADD_BUTTON, IN, pull_up_down=PUD_UP)
+	    setup(BOT_SUB_BUTTON, IN, pull_up_down=PUD_UP)
+	    Adder.cleanup()
 
-def draw_number(number, row):
+	@staticmethod
+	def cleanup():
+	    for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
+	        output(led, LOW)
 
-	binary = convert_to_binary(number)
+	@staticmethod
+	def draw_number(number, row):
 
-	while len(binary) < len(row):
-		binary.append(0)
+		binary = Adder.convert_to_binary(number)
 
-	for i in range(0, len(row)):
+		while len(binary) < len(row):
+			binary.append(0)
 
-		if binary[i] == 1:
-			output(row[i], HIGH)
-		else:
-			output(row[i], LOW)
+		for i in range(0, len(row)):
 
+			if binary[i] == 1:
+				output(row[i], HIGH)
+			else:
+				output(row[i], LOW)
 
-def convert_to_binary(number):
+	@staticmethod
+	def convert_to_binary(number):
 
-	binary_numbers = []
+		binary_numbers = []
 
-	while int(number / 2) >= 1:
+		while int(number / 2) >= 1:
+			binary_numbers.append(number % 2)
+			number = int(number / 2)
+
 		binary_numbers.append(number % 2)
-		number = int(number / 2)
 
-	binary_numbers.append(number % 2)
+		return list(reversed(binary_numbers))
 
-	return list(reversed(binary_numbers))
+	@staticmethod
+	def wait_for_input():
 
-def wait_for_input():
+		while True:
 
-	while True:
+			if not _input(TOP_ADD_BUTTON):
+				return "TOP_ADD"
+			elif not _input(TOP_SUB_BUTTON):
+				return "TOP_SUB"
+			elif not _input(BOT_ADD_BUTTON):
+				return "MID_ADD"
+			elif not _input(BOT_SUB_BUTTON):
+				return "MID_SUB"
+			else:
+				pass
 
-		if not _input(TOP_ADD_BUTTON):
-			return "TOP_ADD"
-		elif not _input(TOP_SUB_BUTTON):
-			return "TOP_SUB"
-		elif not _input(BOT_ADD_BUTTON):
-			return "MID_ADD"
-		elif not _input(BOT_SUB_BUTTON):
-			return "MID_SUB"
+	@staticmethod
+	def increment(number):
+		if number < 63:
+			return number + 1
 		else:
-			pass
+			return number
 
-def increment(number):
-	if number < 63:
-		return number + 1
-	else:
-		return number
+	@staticmethod
+	def decrement(number):
+		if number > 0:
+			return number - 1
+		else:
+			return number
 
-def decrement(number):
-	if number > 0:
-		return number - 1
-	else:
-		return number
+	def process_command(self, command):
 
-def process_command(command):
+		if command == "TOP_ADD":
+			self.TOP_VALUE = increment(self.TOP_VALUE)
+		elif command == "TOP_SUB":
+			self.TOP_VALUE = decrement(self.TOP_VALUE)
+		elif command == "MID_ADD":
+			self.MID_VALUE = increment(self.MID_VALUE)
+		elif command == "MID_SUB":
+			self.MID_VALUE = decrement(self.MID_VALUE)
 
-	if command == "TOP_ADD":
-		VALUES.TOP_VALUE = increment(VALUES.TOP_VALUE)
-	elif command == "TOP_SUB":
-		VALUES.TOP_VALUE = decrement(VALUES.TOP_VALUE)
-	elif command == "MID_ADD":
-		VALUES.MID_VALUE = increment(VALUES.MID_VALUE)
-	elif command == "MID_SUB":
-		VALUES.MID_VALUE = decrement(VALUES.MID_VALUE)
+	def refresh(self):
 
-def refresh():
-
-	draw_number(VALUES.TOP_VALUE, TOP_ROW)
-	draw_number(VALUES.MID_VALUE, MIDDLE_ROW)
-	draw_number(VALUES.TOP_VALUE + VALUES.MID_VALUE, BOTTOM_ROW)
+		draw_number(self.TOP_VALUE, TOP_ROW)
+		draw_number(self.MID_VALUE, MIDDLE_ROW)
+		draw_number(self.TOP_VALUE + self.MID_VALUE, BOTTOM_ROW)
 
 
 def main():
 
+	adder = Adder()
+
 	while True:
-		command = wait_for_input()
-		process_command(command)
-		refresh()
+		command = Adder.wait_for_input()
+		adder.process_command(command)
+		adder.refresh()
 
 
 if __name__ == "__main__":
 
-	setup_gpio()
+	Adder.setup_gpio()
 	try:
 		main()
 	except KeyboardInterrupt:
-    	cleanup()
+    	Adder.cleanup()
