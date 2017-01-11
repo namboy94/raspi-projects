@@ -20,14 +20,14 @@ from RPi.GPIO import BCM, OUT, IN, HIGH, LOW, PUD_UP
 from RPi.GPIO import setup, setmode, setwarnings, output
 from RPi.GPIO import input as _input
 
-TOP_ROW = [14, 15, 18, 23, 24, 25]
+TOP_ROW = [25, 24, 23, 18, 15, 14]
 MIDDLE_ROW = [8, 7, 12, 16, 20. 21]
-BOTTOM_ROW = [2, 3, 4, 17, 27, 22]
+BOTTOM_ROW = [5, 22, 27, 17, 4, 3, 2]
 
-TOP_ADD_BUTTON = 6
+TOP_ADD_BUTTON = 26
 TOP_SUB_BUTTON = 13
 BOT_ADD_BUTTON = 19
-BOT_SUB_BUTTON = 26
+BOT_SUB_BUTTON = 6
 
 TOP_VALUE = 0
 MID_VALUE = 0
