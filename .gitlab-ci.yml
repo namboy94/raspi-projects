@@ -1,5 +1,6 @@
 stages:
   - mirror
+  - test
 
 github_mirror:
   stage: mirror
