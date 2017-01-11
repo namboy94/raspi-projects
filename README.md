@@ -8,6 +8,11 @@ the Layout looks like this:
 
 ![The Layout of the Raspberry Pi Dice](layout.jpg)
 
+The LEDs are connected to the GPIO Pins 22, 27, 17, 2, 3 and 4 (BCM Layout). The
+order does not matter.
+
+The Button is connected to Pin 14.
+
 ## Demonstration
 
 A demonstration video is available on
