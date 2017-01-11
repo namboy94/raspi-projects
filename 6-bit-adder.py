@@ -15,6 +15,7 @@ This program is free software: you can redistribute it and/or modify
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import time
 
 from RPi.GPIO import BCM, OUT, IN, HIGH, LOW, PUD_UP
 from RPi.GPIO import setup, setmode, setwarnings, output
@@ -63,7 +64,7 @@ class Adder(object):
 		binary = Adder.convert_to_binary(number)
 
 		while len(binary) < len(row):
-			binary.append(0)
+			binary = [0] + binary
 
 		for i in range(0, len(row)):
 
@@ -118,19 +119,19 @@ class Adder(object):
 	def process_command(self, command):
 
 		if command == "TOP_ADD":
-			self.TOP_VALUE = increment(self.TOP_VALUE)
+			self.TOP_VALUE = Adder.increment(self.TOP_VALUE)
 		elif command == "TOP_SUB":
-			self.TOP_VALUE = decrement(self.TOP_VALUE)
+			self.TOP_VALUE = Adder.decrement(self.TOP_VALUE)
 		elif command == "MID_ADD":
-			self.MID_VALUE = increment(self.MID_VALUE)
+			self.MID_VALUE = Adder.increment(self.MID_VALUE)
 		elif command == "MID_SUB":
-			self.MID_VALUE = decrement(self.MID_VALUE)
+			self.MID_VALUE = Adder.decrement(self.MID_VALUE)
 
 	def refresh(self):
 
-		draw_number(self.TOP_VALUE, TOP_ROW)
-		draw_number(self.MID_VALUE, MIDDLE_ROW)
-		draw_number(self.TOP_VALUE + self.MID_VALUE, BOTTOM_ROW)
+		Adder.draw_number(self.TOP_VALUE, TOP_ROW)
+		Adder.draw_number(self.MID_VALUE, MIDDLE_ROW)
+		Adder.draw_number(self.TOP_VALUE + self.MID_VALUE, BOTTOM_ROW)
 
 
 def main():
@@ -141,6 +142,7 @@ def main():
 		command = Adder.wait_for_input()
 		adder.process_command(command)
 		adder.refresh()
+		time.sleep(1)
 
 
 if __name__ == "__main__":
