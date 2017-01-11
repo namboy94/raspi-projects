@@ -7,3 +7,8 @@ github_mirror:
     - git checkout master
     - git pull origin master
     - git push -f git@github.com:namboy94/raspi-6-bit-adder.git master
+
+checkstyle:
+  stage: test
+  script:
+    - pep8 .
