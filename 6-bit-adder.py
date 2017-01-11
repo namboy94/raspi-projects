@@ -33,122 +33,122 @@ BOT_SUB_BUTTON = 6
 
 class Adder(object):
 
-	def __init__(self):
+    def __init__(self):
 
-		self.TOP_VALUE = 0
-		self.MID_VALUE = 0
+        self.TOP_VALUE = 0
+        self.MID_VALUE = 0
 
-	@staticmethod
-	def setup_gpio():
+    @staticmethod
+    def setup_gpio():
 
-	    setmode(BCM)
-	    setwarnings(False)
+        setmode(BCM)
+        setwarnings(False)
 
-	    for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
-	        setup(led, OUT)
+        for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
+            setup(led, OUT)
 
-	    setup(TOP_ADD_BUTTON, IN, pull_up_down=PUD_UP)
-	    setup(TOP_SUB_BUTTON, IN, pull_up_down=PUD_UP)
-	    setup(BOT_ADD_BUTTON, IN, pull_up_down=PUD_UP)
-	    setup(BOT_SUB_BUTTON, IN, pull_up_down=PUD_UP)
-	    Adder.cleanup()
+        setup(TOP_ADD_BUTTON, IN, pull_up_down=PUD_UP)
+        setup(TOP_SUB_BUTTON, IN, pull_up_down=PUD_UP)
+        setup(BOT_ADD_BUTTON, IN, pull_up_down=PUD_UP)
+        setup(BOT_SUB_BUTTON, IN, pull_up_down=PUD_UP)
+        Adder.cleanup()
 
-	@staticmethod
-	def cleanup():
-	    for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
-	        output(led, LOW)
+    @staticmethod
+    def cleanup():
+        for led in TOP_ROW + MIDDLE_ROW + BOTTOM_ROW:
+            output(led, LOW)
 
-	@staticmethod
-	def draw_number(number, row):
+    @staticmethod
+    def draw_number(number, row):
 
-		binary = Adder.convert_to_binary(number)
+        binary = Adder.convert_to_binary(number)
 
-		while len(binary) < len(row):
-			binary = [0] + binary
+        while len(binary) < len(row):
+            binary = [0] + binary
 
-		for i in range(0, len(row)):
+        for i in range(0, len(row)):
 
-			if binary[i] == 1:
-				output(row[i], HIGH)
-			else:
-				output(row[i], LOW)
+            if binary[i] == 1:
+                output(row[i], HIGH)
+            else:
+                output(row[i], LOW)
 
-	@staticmethod
-	def convert_to_binary(number):
+    @staticmethod
+    def convert_to_binary(number):
 
-		binary_numbers = []
+        binary_numbers = []
 
-		while int(number / 2) >= 1:
-			binary_numbers.append(number % 2)
-			number = int(number / 2)
+        while int(number / 2) >= 1:
+            binary_numbers.append(number % 2)
+            number = int(number / 2)
 
-		binary_numbers.append(number % 2)
+        binary_numbers.append(number % 2)
 
-		return list(reversed(binary_numbers))
+        return list(reversed(binary_numbers))
 
-	@staticmethod
-	def wait_for_input():
+    @staticmethod
+    def wait_for_input():
 
-		while True:
+        while True:
 
-			if not _input(TOP_ADD_BUTTON):
-				return "TOP_ADD"
-			elif not _input(TOP_SUB_BUTTON):
-				return "TOP_SUB"
-			elif not _input(BOT_ADD_BUTTON):
-				return "MID_ADD"
-			elif not _input(BOT_SUB_BUTTON):
-				return "MID_SUB"
-			else:
-				pass
+            if not _input(TOP_ADD_BUTTON):
+                return "TOP_ADD"
+            elif not _input(TOP_SUB_BUTTON):
+                return "TOP_SUB"
+            elif not _input(BOT_ADD_BUTTON):
+                return "MID_ADD"
+            elif not _input(BOT_SUB_BUTTON):
+                return "MID_SUB"
+            else:
+                pass
 
-	@staticmethod
-	def increment(number):
-		if number < 63:
-			return number + 1
-		else:
-			return number
+    @staticmethod
+    def increment(number):
+        if number < 63:
+            return number + 1
+        else:
+            return number
 
-	@staticmethod
-	def decrement(number):
-		if number > 0:
-			return number - 1
-		else:
-			return number
+    @staticmethod
+    def decrement(number):
+        if number > 0:
+            return number - 1
+        else:
+            return number
 
-	def process_command(self, command):
+    def process_command(self, command):
 
-		if command == "TOP_ADD":
-			self.TOP_VALUE = Adder.increment(self.TOP_VALUE)
-		elif command == "TOP_SUB":
-			self.TOP_VALUE = Adder.decrement(self.TOP_VALUE)
-		elif command == "MID_ADD":
-			self.MID_VALUE = Adder.increment(self.MID_VALUE)
-		elif command == "MID_SUB":
-			self.MID_VALUE = Adder.decrement(self.MID_VALUE)
+        if command == "TOP_ADD":
+            self.TOP_VALUE = Adder.increment(self.TOP_VALUE)
+        elif command == "TOP_SUB":
+            self.TOP_VALUE = Adder.decrement(self.TOP_VALUE)
+        elif command == "MID_ADD":
+            self.MID_VALUE = Adder.increment(self.MID_VALUE)
+        elif command == "MID_SUB":
+            self.MID_VALUE = Adder.decrement(self.MID_VALUE)
 
-	def refresh(self):
+    def refresh(self):
 
-		Adder.draw_number(self.TOP_VALUE, TOP_ROW)
-		Adder.draw_number(self.MID_VALUE, MIDDLE_ROW)
-		Adder.draw_number(self.TOP_VALUE + self.MID_VALUE, BOTTOM_ROW)
+        Adder.draw_number(self.TOP_VALUE, TOP_ROW)
+        Adder.draw_number(self.MID_VALUE, MIDDLE_ROW)
+        Adder.draw_number(self.TOP_VALUE + self.MID_VALUE, BOTTOM_ROW)
 
 
 def main():
 
-	adder = Adder()
+    adder = Adder()
 
-	while True:
-		command = Adder.wait_for_input()
-		adder.process_command(command)
-		adder.refresh()
-		time.sleep(1)
+    while True:
+        command = Adder.wait_for_input()
+        adder.process_command(command)
+        adder.refresh()
+        time.sleep(1)
 
 
 if __name__ == "__main__":
 
-	Adder.setup_gpio()
-	try:
-		main()
-	except KeyboardInterrupt:
-    	Adder.cleanup()
+    Adder.setup_gpio()
+    try:
+        main()
+    except KeyboardInterrupt:
+        Adder.cleanup()
