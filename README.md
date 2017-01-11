@@ -19,3 +19,8 @@ Alternatively, the video file can be downloaded as well:
 ## Usage
 
 The program itself is used by running ```python dice.py```
+
+## Links
+
+* [Github](https://github.com/namboy94/raspi-dice-led)
+* [Gitlab](https://gitlab.namibsun.net/namboy94/raspi-dice-led)
