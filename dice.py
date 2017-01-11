@@ -17,6 +17,7 @@ def setup_gpio():
         setup(led, OUT)
 
     setup(BUTTON, IN, pull_up_down=PUD_UP)
+    cleanup()
 
 def cleanup():
     for led in LEDS:
