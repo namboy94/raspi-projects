@@ -1,5 +1,6 @@
 stages:
   - mirror
+  - test
 
 github_mirror:
   stage: mirror
@@ -7,3 +8,8 @@ github_mirror:
     - git checkout master
     - git pull origin master
     - git push -f git@github.com:namboy94/raspi-dice-led.git master
+
+checkstyle:
+  stage: test
+  script:
+    - pep8 .
