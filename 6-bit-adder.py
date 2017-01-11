@@ -21,7 +21,7 @@ from RPi.GPIO import setup, setmode, setwarnings, output
 from RPi.GPIO import input as _input
 
 TOP_ROW = [25, 24, 23, 18, 15, 14]
-MIDDLE_ROW = [8, 7, 12, 16, 20. 21]
+MIDDLE_ROW = [8, 7, 12, 16, 20, 21]
 BOTTOM_ROW = [5, 22, 27, 17, 4, 3, 2]
 
 TOP_ADD_BUTTON = 26
@@ -29,8 +29,10 @@ TOP_SUB_BUTTON = 13
 BOT_ADD_BUTTON = 19
 BOT_SUB_BUTTON = 6
 
-TOP_VALUE = 0
-MID_VALUE = 0
+class Values(object):
+
+	TOP_VALUE = 0
+	MID_VALUE = 0
 
 
 def setup_gpio():
@@ -108,19 +110,19 @@ def decrement(number):
 def process_command(command):
 
 	if command == "TOP_ADD":
-		TOP_VALUE = increment(TOP_VALUE)
-	elif command == "TOP_SUB"
-		TOP_VALUE = decrement(TOP_VALUE)
+		VALUES.TOP_VALUE = increment(VALUES.TOP_VALUE)
+	elif command == "TOP_SUB":
+		VALUES.TOP_VALUE = decrement(VALUES.TOP_VALUE)
 	elif command == "MID_ADD":
-		MID_VALUE = increment(MID_VALUE)
-	elif command == "MID_SUB"
-		MID_VALUE = decrement(MID_VALUE)
+		VALUES.MID_VALUE = increment(VALUES.MID_VALUE)
+	elif command == "MID_SUB":
+		VALUES.MID_VALUE = decrement(VALUES.MID_VALUE)
 
 def refresh():
 
-	draw_number(TOP_VALUE, TOP_ROW)
-	draw_number(MID_VALUE, MIDDLE_ROW)
-	draw_number(TOP_VALUE + MID_VALUE, BOTTOM_ROW)
+	draw_number(VALUES.TOP_VALUE, TOP_ROW)
+	draw_number(VALUES.MID_VALUE, MIDDLE_ROW)
+	draw_number(VALUES.TOP_VALUE + VALUES.MID_VALUE, BOTTOM_ROW)
 
 
 def main():
