@@ -7,7 +7,7 @@ The 7-bit number is always the sum of the two 6-bit numbers.
 
 ## Setup
 
-the Layout looks like this:
+The Layout looks like this:
 
 ![The Layout of the Raspberry Pi 6-bit Adder](layout.jpg)
 
