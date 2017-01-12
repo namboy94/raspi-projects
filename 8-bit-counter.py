@@ -46,6 +46,10 @@ def setup_gpio():
 
     cleanup()
 
+    for segment in [0, 1, 2, 3, 4, 5]:
+        output(LSD[segment], HIGH)
+        output(MSD[segment], HIGH)
+
 
 def cleanup():
 
@@ -168,7 +172,7 @@ if __name__ == "__main__":
             output(BEEPER, HIGH)
 
             counter.increment()
-            time.sleep(0.1)
+            time.sleep(0.2)
 
             output(BEEPER, LOW)
 
