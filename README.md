@@ -24,7 +24,7 @@ pins 16 and 12 respectively.
 ## Demonstration
 
 A demonstration video is available on
-[Youtube]()
+[Youtube](https://youtu.be/8YgGTAfsWaA)
 
 ## Usage
 
