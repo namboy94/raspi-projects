@@ -30,6 +30,7 @@ TWO_HUNDRED_LED = 12
 LSD = [2, 3, 4, 17, 27, 22, 10]
 MSD = [9, 11, 5, 6, 13, 19, 26]
 
+
 def setup_gpio():
 
     setmode(BCM)
@@ -140,6 +141,7 @@ def convert_to_8_bit_binary(number):
         binary_numbers.append(0)
 
     return list(reversed(binary_numbers))
+
 
 def wait_for_input():
     while _input(BUTTON):
