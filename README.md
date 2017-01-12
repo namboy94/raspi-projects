@@ -4,7 +4,7 @@ This is a simple Raspberry Pi project that simulates a Dice roll using LEDs.
 
 ## Setup
 
-the Layout looks like this:
+The Layout looks like this:
 
 ![The Layout of the Raspberry Pi Dice](layout.jpg)
 
