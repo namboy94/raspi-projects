@@ -1,4 +1,4 @@
-# Raspberry Pi 8-bit Counter
+# Raspberry Pi 8-bit Counter [![build status](https://gitlab.namibsun.net/namboy94/raspi-8-bit-counter/badges/master/build.svg)](https://gitlab.namibsun.net/namboy94/raspi-8-bit-counter/commits/master)
 
 A Raspberry Pi Project that counts an 8-bit number and displays it in
 a human-readable format.
