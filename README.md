@@ -1,4 +1,4 @@
-# Raspberry Pi 6-bit Addition Calculator
+# Raspberry Pi 6-bit Addition Calculator [![build status](https://gitlab.namibsun.net/namboy94/raspi-6-bit-adder/badges/master/build.svg)](https://gitlab.namibsun.net/namboy94/raspi-6-bit-adder/commits/master)
 
 This Raspberry Pi Project consists of 3 rows of LEDs and 4 buttons.
 The rows of LEDs show binary numbers (2 6-bit numbers and one 7-bit).
