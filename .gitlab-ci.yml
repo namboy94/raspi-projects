@@ -34,7 +34,7 @@ generate git_stats:
     - linux-buildserver
   script:
     - git_stats generate
-    - rsync -av git_stats/ /var/www/gitstats.namibsun.net/public_html/git_stats/raspi-dice-led --delete-before
+    - rsync -av git_stats/ /var/www/gitstats.namibsun.net/public_html/git_stats/raspi-8-bit-counter --delete-before
 
 update_html_pages:
   stage: finalize
