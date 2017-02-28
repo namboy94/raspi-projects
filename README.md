@@ -1,4 +1,4 @@
-# Raspberry Pi LED Dice
+# Raspberry Pi LED Dice [![build status](https://gitlab.namibsun.net/namboy94/raspi-dice-led/badges/master/build.svg)](https://gitlab.namibsun.net/namboy94/raspi-dice-led/commits/master)
 
 This is a simple Raspberry Pi project that simulates a Dice roll using LEDs.
 
