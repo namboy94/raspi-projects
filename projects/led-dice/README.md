@@ -6,7 +6,7 @@ This is a simple Raspberry Pi project that simulates a Dice roll using LEDs.
 
 The Layout looks like this:
 
-![The Layout of the Raspberry Pi Dice](layout.jpg)
+![The Layout of the Raspberry Pi Dice](layout-readme.jpg)
 
 The LEDs are connected to the GPIO Pins 22, 27, 17, 2, 3 and 4 (BCM Layout).
 The order does not matter.

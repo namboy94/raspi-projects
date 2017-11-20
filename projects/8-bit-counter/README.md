@@ -7,7 +7,7 @@ a human-readable format.
 
 The Layout looks like this:
 
-![The Layout of the Raspberry Pi 8-bit counter](layout.jpg)
+![The Layout of the Raspberry Pi 8-bit counter](layout-readme.jpg)
 
 The Red LEDs, which are used to display the current number in binary,
 are connected to the GPIO pins 7, 8, 25, 24, 23, 18, 15 and 14.

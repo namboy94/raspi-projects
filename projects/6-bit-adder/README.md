@@ -9,7 +9,7 @@ The 7-bit number is always the sum of the two 6-bit numbers.
 
 The Layout looks like this:
 
-![The Layout of the Raspberry Pi 6-bit Adder](layout.jpg)
+![The Layout of the Raspberry Pi 6-bit Adder](layout-readme.jpg)
 
 The Upper LED row is connected to the Pins 14, 15, 18, 23, 24, 25.
 
