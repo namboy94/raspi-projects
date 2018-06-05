@@ -1,4 +1,6 @@
-# Raspberry Pi Projects [![pipeline status](https://gitlab.namibsun.net/namboy94/raspi-projects/badges/master/pipeline.svg)](https://gitlab.namibsun.net/namboy94/raspi-projects/commits/master)
+# Raspberry Pi Projects
+
+[![pipeline status](https://gitlab.namibsun.net/namibsun/museum/raspi-projects/badges/master/pipeline.svg)](https://gitlab.namibsun.net/namibsun/museum/raspi-projects/commits/master)
 
 ![Logo](resources/logo/logo-readme.png)
 
@@ -12,9 +14,8 @@ A collection of Raspberry Pi projects.
 
 ## Further Information
 
-* [Changelog](https://gitlab.namibsun.net/namboy94/raspi-projects/raw/master/CHANGELOG)
-* [License (GPLv3)](https://gitlab.namibsun.net/namboy94/raspi-projects/raw/master/LICENSE)
-* [Gitlab](https://gitlab.namibsun.net/namboy94/raspi-projects)
+* [Changelog](CHANGELOG)
+* [License](LICENSE)
+* [Gitlab](https://gitlab.namibsun.net/namibsun/museum/raspi-projects)
 * [Github](https://github.com/namboy94/raspi-projects)
-* [Git Statistics (gitstats)](https://gitstats.namibsun.net/gitstats/raspi-projects/index.html)
-* [Git Statistics (git_stats)](https://gitstats.namibsun.net/git_stats/raspi-projects/index.html)
+* [Progstats](https://progstats.namibsun.net/projects/raspi-projects)
